@@ -56,6 +56,7 @@ def on_message(ws, message):
 		data = fd.read()
 		fd.close()
 		ws.send("CSV:"+command+":"+data)
+
 def on_error(ws, error):
 	print(error)
 
