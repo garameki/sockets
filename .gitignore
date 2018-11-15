@@ -3,7 +3,7 @@
 templog
 imgstream
 max31856
-send-voice
+voice-send
 server
 
 # Byte-compiled / optimized / DLL files
