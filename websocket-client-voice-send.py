@@ -78,9 +78,9 @@ if __name__ == "__main__":
 	if len(args) == 2:
 		port = args[1].strip()
 	else:
-		port = "9801"
+		port = "6601"
 	print("port={}".format(port))
-	websocket.enableTrace(True)
+	websocket.enableTrace(False)
 	ws = websocket.WebSocketApp("ws://garameki.com:"+port+"/",
 	on_message = on_message,
 	on_error = on_error,
