@@ -57,7 +57,9 @@ def on_message(ws, message):
 		fd = codecs.open("/home/pi/data/yoroshiku.mp3","rb")
 		data = fd.read()
 		fd.close()
-		ws.send(base64.b64encode(data))#correct
+		data2 = base64.b64encode(data)
+		ws.send(data2)#correct
+		print(data2)
 		###ws.send(data)#incorrect UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
 
 
