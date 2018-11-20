@@ -2,8 +2,8 @@
 <html lang="ja">
 	<head>
 		<meta charset="utf-8">
+		<script type="application/javascript" src="/js/myConvertBase64ToVoice.js"></script>
 		<script type="application/javascript" src="/js/myVoice.js"></script>
-		<script type="application/javascript" src="/js/myBufferLoader.js"></script>
 		<script type="application/javascript">
 
 window.onload = function() {
@@ -13,7 +13,7 @@ window.onload = function() {
 	var count = 0;
 	var hoge = setInterval(function() {
 		count++;
-		if(count>2){
+		if(count>3){
 			clearInterval(hoge);
 			myVoice.close();
 		}
