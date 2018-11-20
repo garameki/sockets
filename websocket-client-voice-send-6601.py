@@ -48,19 +48,19 @@ except ImportError:
 import time
 
 import base64
+import subprocess 
 
 def on_message(ws, message):
-	objCommand = re.search("^HELLO$",message)
+	objCommand = re.search("^YOROSHIKU$",message)
 	if objCommand is not None:
-		command = objCommand.group().strip()
-		filename = command+".csv"
-		fd = codecs.open("/home/pi/data/yoroshiku.mp3","rb")
-		data = fd.read()
-		fd.close()
-		#print(data)
-		data2 = base64.b64encode(data)
+		filename = "yoroshiku.mp3"
+
+	try:
+		result = subprocess.run('aquestalkpi/AquesTalkPi "　こんにちは　"',shell=True,check=True,stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=False)
+		data2 = base64.b64encode(result.stdout)
 		ws.send(data2)#correct
-		###ws.send(data)#incorrect UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+	except :
+		print("AquesTalkPi ERROR")
 
 
 def on_error(ws, error):
