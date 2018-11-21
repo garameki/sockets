@@ -51,16 +51,15 @@ import base64
 import subprocess 
 
 def on_message(ws, message):
-	objCommand = re.search("^YOROSHIKU$",message)
-	if objCommand is not None:
-		filename = "yoroshiku.mp3"
-
-	try:
-		result = subprocess.run('aquestalkpi/AquesTalkPi "　こんにちは　"',shell=True,check=True,stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=False)
-		data2 = base64.b64encode(result.stdout)
-		ws.send(data2)#correct
-	except :
-		print("AquesTalkPi ERROR")
+	objSentence = re.search("^SAY(.*)$",message)
+	print(objSentence.group(1))
+	if objSentence.group(1) is not "":
+		try:
+			result = subprocess.run('aquestalkpi/AquesTalkPi "　　　{}"'.format(objSentence.group(1)),shell=True,check=True,stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=False)
+			data2 = base64.b64encode(result.stdout)
+			ws.send(data2)#correct
+		except :
+			print("AquesTalkPi ERROR")
 
 
 def on_error(ws, error):
