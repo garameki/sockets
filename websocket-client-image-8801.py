@@ -39,6 +39,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 from PIL import Image
 import io
 
+import sys
+
 import cv2
 
 import websocket
@@ -100,11 +102,11 @@ def on_open(ws):
 			print("thread terminating...")
 	thread.start_new_thread(run, ())
 
-def main():
+def main(deviceNO):
 	global capture
 	global img
 
-	capture = cv2.VideoCapture(0)
+	capture = cv2.VideoCapture(int(deviceNO))
 #	capture.set(cv2.cv.CV_CAP_PROP_FRAME_WIDTH, 320); 
 #	capture.set(cv2.cv.CV_CAP_PROP_FRAME_HEIGHT, 240);
 #	capture.set(cv2.cv.CV_CAP_PROP_SATURATION,0.2);
@@ -122,4 +124,9 @@ def main():
 		capture.release()
 
 if __name__ == "__main__":
-	main()
+	arg = sys.argv
+	if len(arg) == 2:
+		deviceNO = arg[1]
+	else:
+		deviceNO = 0
+	main(deviceNO)
