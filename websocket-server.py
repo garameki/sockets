@@ -182,4 +182,5 @@ if __name__ == '__main__':
 	else:
 		port = 8801
 	print("port={}".format(port))
-	HubServer(port,'garameki.com',logging.INFO)
+	#HubServer(port,'garameki.com',logging.INFO)
+	HubServer(port,'192.168.3.6',logging.INFO)
